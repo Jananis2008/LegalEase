@@ -22,6 +22,16 @@ st.set_page_config(
 
 
 # =========================
+# BACKEND CONFIGURATION
+# =========================
+
+BACKEND_URL = os.getenv(
+    "BACKEND_URL",
+    "http://127.0.0.1:8000"
+)
+
+
+# =========================
 # CUSTOM UI STYLE
 # =========================
 
@@ -124,9 +134,7 @@ st.markdown(
         div.stDownloadButton > button:hover {
             background: #FFF8E1 !important;
             color: #6B5310 !important;
-
             border: 2px solid #D4AF37 !important;
-
             box-shadow: none !important;
             transform: none !important;
         }
@@ -296,7 +304,7 @@ if st.button(
         try:
 
             response = requests.post(
-                "http://127.0.0.1:8000/generate",
+                f"{BACKEND_URL}/generate",
                 json={
                     "document_type": document_type,
                     "parties": parties,
